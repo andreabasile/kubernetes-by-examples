@@ -1,2 +1,2 @@
 # Kubernetes by examples
-Collection of examples for practicing with Kubernetes
+My collection of examples for practicing with Kubernetes
