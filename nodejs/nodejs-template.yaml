@@ -5,15 +5,15 @@ metadata:
   namespace: openshift
   annotations:
     openshift.io/display-name: NoverIT Nodejs Web App
-    description: An example Node.js application with no database. 
+    description: An example of nodejs web application.
     tags: quickstart,nodejs
     iconClass: icon-nodejs
     openshift.io/long-description: This template defines resources needed to develop
       a NodeJS application, including a build configuration and application deployment
       configuration.  It does not include a database.
-    openshift.io/provider-display-name: Red Hat, Inc.
+    openshift.io/provider-display-name: NoverIT
     openshift.io/documentation-url: https://github.com/kalise/nodejs-web-app.git
-    openshift.io/support-url: https://access.redhat.com
+    openshift.io/support-url: https://github.com/kalise/nodejs-web-app.git
     template.openshift.io/bindable: 'false'
 message: |-
   The following service(s) have been created in your project: ${NAME}.
@@ -39,7 +39,7 @@ objects:
   metadata:
     name: "${NAME}"
   spec:
-    host: "${APPLICATION_DOMAIN_NAME}"
+    host: "${NAME}.${APPLICATION_DOMAIN_NAME}"
     to:
       kind: Service
       name: "${NAME}"
@@ -145,8 +145,8 @@ parameters:
   value: openshift
 - name: NODEJS_VERSION
   displayName: Version of NodeJS Image
-  description: Version of NodeJS image to be used (6, 8, or latest).
-  value: '8'
+  description: Version of NodeJS image to be used (6, 8, 10, or latest).
+  value: '10'
   required: true
 - name: MEMORY_LIMIT
   displayName: Memory Limit
@@ -162,12 +162,14 @@ parameters:
   displayName: Git Reference
   description: Set this to a branch name, tag or other ref of your repository if you
     are not using the default branch.
+  required: false
 - name: CONTEXT_DIR
   displayName: Context Directory
   description: Set this to the relative path to your project if it is not in the root
     of your repository.
+  required: false
 - name: APPLICATION_DOMAIN_NAME
-  displayName: Application Hostname
-  description: The exposed hostname that will route to the Node.js service, if left
-    blank a value will be defaulted.
-  value: ''
+  displayName: Application Domain
+  description: The exposed domain that will route to the Node.js service. If blank, it will be defaulted.
+  value: 'openshift.noverit.com'
+  required: false

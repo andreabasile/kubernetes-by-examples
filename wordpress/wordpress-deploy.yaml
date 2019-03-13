@@ -44,7 +44,7 @@ spec:
             path: /
             port: 80
             scheme: HTTP
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           timeoutSeconds: 6
           periodSeconds: 10
           failureThreshold: 1
