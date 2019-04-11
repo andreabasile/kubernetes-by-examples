@@ -1,0 +1,50 @@
+# oc rollout latest dc/nodejs
+# oc rollout history dc/nodejs
+# oc rollout retry dc/nodejs
+# oc rollout undo dc/nodejs
+
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: nodejs
+spec:
+  selector:
+    app: nodejs
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: Rolling
+  triggers:
+  - type: ConfigChange # Any change to the pod template
+  - type: ImageChange  # Any change to the ImageStream
+    imageChangeParams:
+      automatic: true 
+      from:
+        kind: ImageStreamTag
+        name: nodejs:latest
+        namespace: openshift
+      containerNames:
+        - nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - name: nodejs
+        image: kalise/nodejs-web-app:1.0
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 10
+        env:
+          - name: MESSAGE
+            value: "Hello Gdansk"
+      restartPolicy: Always

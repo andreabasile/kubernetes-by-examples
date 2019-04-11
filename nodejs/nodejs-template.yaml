@@ -70,9 +70,6 @@ objects:
           kind: ImageStreamTag
           namespace: "${NAMESPACE}"
           name: nodejs:${NODEJS_VERSION}
-        env:
-        - name: NPM_MIRROR
-          value: "${NPM_MIRROR}"
     output:
       to:
         kind: ImageStreamTag
@@ -102,7 +99,7 @@ objects:
           kind: ImageStreamTag
           name: "${NAME}:latest"
     - type: ConfigChange
-    replicas: 1
+    replicas: 3
     selector:
       name: "${NAME}"
     template:

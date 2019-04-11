@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: nodejs-web-app
+  namespace:
+  labels:
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/kalise/nodejs-web-app.git
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: nodejs:10
+        namespace: openshift
+      env:
+      - name: NPM_MIRROR
+        value: "${NPM_MIRROR}"
+  output:
+    to:
+      kind: ImageStreamTag
+      name: nodejs:latest
+  triggers:
+    - type: ImageChange
+    - type: ConfigChange
+  postCommit:
+    script: npm test
