@@ -27,9 +27,6 @@ spec:
       postStart:
         exec:
           command: ["/bin/sh", "-c", "mkdir -p /storage/default"]
-      preStop:
-        exec:
-          command: ["/bin/sh", "-c", "rm -rf /storage/default"]
   volumes:
   - name: data
     emptyDir:
