@@ -56,4 +56,5 @@ spec:
               command: ["/bin/sh", "-c", "mkdir -p /storage/default"]
       volumes:
       - name: data
-        emptyDir:
+        persistentVolumeClaim:
+          claimName: minio
