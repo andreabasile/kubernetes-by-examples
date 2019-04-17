@@ -1,10 +1,9 @@
----
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: volume-claim-dynamic
 spec:
-  storageClassName: retain
+  #storageClassName: retain
   accessModes:
     - ReadWriteOnce
   resources:

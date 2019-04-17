@@ -15,13 +15,15 @@ spec:
       labels:
         run: nginx-ds
     spec:
+      hostNetwork: true # using the host node’s network namespace
       containers:
       - image: nginx:latest
         imagePullPolicy: Always
         name: nginx
         ports:
-        - containerPort: 80
+        - name: http
           protocol: TCP
+          containerPort: 80          
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
