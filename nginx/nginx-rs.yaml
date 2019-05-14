@@ -16,9 +16,7 @@ spec:
     spec:
       containers:
       - image: nginx:1.12
-        imagePullPolicy: Always
         name: nginx
         ports:
         - containerPort: 80
           protocol: TCP
-      restartPolicy: Always

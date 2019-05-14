@@ -7,10 +7,10 @@ metadata:
     kubernetes.io/ingress.class: "traefik"
 spec:
   rules:
-  - host: taas.kubernetes.noverit.com
+  - host: tommy00.kubernetes.noverit.com
     http:
       paths:
-      - path: /
+      - path: /examples
         backend:
           serviceName: taas
           servicePort: 8000

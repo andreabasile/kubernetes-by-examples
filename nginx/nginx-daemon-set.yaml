@@ -3,7 +3,6 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   labels:
-    run: nginx
   name: nginx-ds
   namespace:
 spec:
@@ -24,7 +23,4 @@ spec:
         - name: http
           protocol: TCP
           containerPort: 80          
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 30
 
