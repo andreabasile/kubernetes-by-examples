@@ -47,6 +47,3 @@ spec:
       volumes:
       - name: data
         emptyDir: {}
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 10

@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: mariadb
   labels:
-    run: mariadb
 spec:
   ports:
   - protocol: TCP
